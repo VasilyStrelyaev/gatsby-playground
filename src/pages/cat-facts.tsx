@@ -4,20 +4,33 @@ import { useEffect, useState } from 'react';
 import Grid from '../components/grid';
 import DataSource from 'devextreme/data/data_source';
 
-const getCatFacts = async (): Promise<any[]> => {
-  const dataResponce = await fetch("https://catfact.ninja/facts", {
-    cache: "no-store",
-  });
-  const facts = (await dataResponce.json()).data;
+export async function getServerData() {
+  try {
+    const dataResponse = await fetch("https://catfact.ninja/facts", {
+      cache: "no-store",
+    });
 
-  return facts;
-};
+    if (!dataResponse.ok) {
+      throw new Error(`Response failed`)
+    }
 
-const DxDevExtreme: React.FC = () => {
+    return {
+      props: (await dataResponse.json()).data,
+    }
+  } catch (error) {
+    return {
+      status: 500,
+      headers: {},
+      props: {}
+    }
+  }
+}
+
+const DxDevExtreme: React.FC<{ serverData: any[] }> = ({ serverData }) => {
   const [dataSource, setDataSource] = useState<DataSource>();
 
   async function prepareDataSource() {
-    const facts = await getCatFacts();
+    const facts = serverData;
     const dataSource = new DataSource({
       store: facts,
     });
