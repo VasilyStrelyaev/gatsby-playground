@@ -1,8 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
-
-import Grid from '../components/grid';
-import DataSource from 'devextreme/data/data_source';
+import DxDevExtreme from '../components/dxdevextreme';
 
 export async function getServerData() {
   try {
@@ -26,25 +23,9 @@ export async function getServerData() {
   }
 }
 
-const DxDevExtreme: React.FC<{ serverData: any[] }> = ({ serverData }) => {
-  const [dataSource, setDataSource] = useState<DataSource>();
-
-  async function prepareDataSource() {
-    const facts = serverData;
-    const dataSource = new DataSource({
-      store: facts,
-    });
-    await dataSource.load();
-
-    setDataSource(dataSource);
-  }
-
-  useEffect(() => {
-    prepareDataSource();
-  }, []);
-
-
-  return <Grid data={dataSource?.items() || []}></Grid>;
+const CatFacts: React.FC<{ serverData: any[] }> = ({ serverData }) => {
+  return <DxDevExtreme serverData={serverData}/>;
+  // return <></>;
 }
 
-export default DxDevExtreme;
+export default CatFacts;
