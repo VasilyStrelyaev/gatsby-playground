@@ -1,35 +1,35 @@
 import * as React from "react";
 
-import DataGrid, {
-  Column,
-  Grouping,
-  GroupPanel,
-  Pager,
-  Paging,
-  SearchPanel,
-} from 'devextreme-react/data-grid';
+// import DataGrid, {
+//   Column,
+//   Grouping,
+//   GroupPanel,
+//   Pager,
+//   Paging,
+//   SearchPanel,
+// } from 'devextreme-react/data-grid';
 
-import ODataStore from 'devextreme/data/odata/store';
+// import ODataStore from 'devextreme/data/odata/store';
 
-const pageSizes = [10, 25, 50, 100];
+// const pageSizes = [10, 25, 50, 100];
 
-const dataSourceOptions = {
-  store: new ODataStore({
-    url: 'https://js.devexpress.com/Demos/SalesViewer/odata/DaySaleDtoes',
-    key: 'Id',
-    beforeSend(request) {
-      const year = new Date().getFullYear() - 1;
-      request.params.startDate = `${year}-05-10`;
-      request.params.endDate = `${year}-5-15`;
-    },
-  }),
-};
+// const dataSourceOptions = {
+//   store: new ODataStore({
+//     url: 'https://js.devexpress.com/Demos/SalesViewer/odata/DaySaleDtoes',
+//     key: 'Id',
+//     beforeSend(request) {
+//       const year = new Date().getFullYear() - 1;
+//       request.params.startDate = `${year}-05-10`;
+//       request.params.endDate = `${year}-5-15`;
+//     },
+//   }),
+// };
 
 function DemoGrid() {
   return (
     <>
       <p>Will this be rendered on the server?</p>
-      <DataGrid
+      {/* <DataGrid
       dataSource={dataSourceOptions}
       allowColumnReordering={true}
       rowAlternationEnabled={true}
@@ -64,7 +64,7 @@ function DemoGrid() {
 
       <Pager allowedPageSizes={pageSizes} showPageSizeSelector={true} />
       <Paging defaultPageSize={10} />
-    </DataGrid>
+    </DataGrid> */}
   </>
   );
 }
