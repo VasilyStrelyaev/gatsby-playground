@@ -1,5 +1,6 @@
 import * as React from 'react';
 import DxDevExtreme from '../components/dxdevextreme';
+import { HeadFC } from 'gatsby';
 
 export async function getServerData() {
   try {
@@ -34,3 +35,11 @@ const CatFacts: React.FC<{ serverData: any[] }> = ({ serverData }) => {
 }
 
 export default CatFacts;
+
+export const Head: HeadFC = () => {
+  return (
+    <>
+      <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/23.1.3/css/dx.light.css" />
+    </>
+  )
+};
