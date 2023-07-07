@@ -24,7 +24,12 @@ export async function getServerData() {
 }
 
 const CatFacts: React.FC<{ serverData: any[] }> = ({ serverData }) => {
-  return <DxDevExtreme serverData={serverData}/>;
+  return (
+    <>
+      <p>Some cat facts for your consideration:</p>
+      <DxDevExtreme serverData={serverData}/>
+    </>
+  );
   // return <></>;
 }
 
