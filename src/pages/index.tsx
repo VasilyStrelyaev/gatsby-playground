@@ -33,6 +33,7 @@ const DemoGrid: React.FC = () => {
   return (
     <>
       <p>Will now this be rendered on the server?</p>
+      <p>What about this: <span>{arrayStore.totalCount.name}</span></p>
       <DataGrid
         dataSource={arrayStore}
         allowColumnReordering={true}
