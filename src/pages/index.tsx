@@ -2,38 +2,44 @@ import * as React from "react";
 
 import type { HeadFC, PageProps } from "gatsby";
 
-import DataGrid, {
-  Column,
-  Pager,
-  Paging,
-} from 'devextreme-react/data-grid';
+// import DataGrid, {
+//   Column,
+//   Pager,
+//   Paging,
+// } from 'devextreme-react/data-grid';
 
-import ODataStore from 'devextreme/data/odata/store';
+import DataGrid from 'devextreme-react/data-grid';
 
-const pageSizes = [10, 25, 50, 100];
+//import ODataStore from 'devextreme/data/odata/store';
+import ArrayStore from "devextreme/data/array_store";
 
-const dataSourceOptions = {
-  store: new ODataStore({
-    url: 'https://js.devexpress.com/Demos/SalesViewer/odata/DaySaleDtoes',
-    key: 'Id',
-    beforeSend(request) {
-      const year = new Date().getFullYear() - 1;
-      request.params.startDate = `${year}-05-10`;
-      request.params.endDate = `${year}-5-15`;
-    },
-  }),
-};
+// const pageSizes = [10, 25, 50, 100];
+
+// const dataSourceOptions = {
+//   store: new ODataStore({
+//     url: 'https://js.devexpress.com/Demos/SalesViewer/odata/DaySaleDtoes',
+//     key: 'Id',
+//     beforeSend(request) {
+//       const year = new Date().getFullYear() - 1;
+//       request.params.startDate = `${year}-05-10`;
+//       request.params.endDate = `${year}-5-15`;
+//     },
+//   }),
+// };
+
+const arrayStore = new ArrayStore({ data: [['g', '3'], ['f', '5']] });
 
 const DemoGrid: React.FC = () => {
   return (
     <>
+      <p>Will now this be rendered on the server?</p>
       <DataGrid
-        dataSource={dataSourceOptions}
+        dataSource={arrayStore}
         allowColumnReordering={true}
         rowAlternationEnabled={true}
         showBorders={true}
       >
-        <Column dataField="Product" />
+        {/* <Column dataField="Product" />
         <Column
           dataField="Amount"
           caption="Sale Amount"
@@ -57,7 +63,7 @@ const DemoGrid: React.FC = () => {
         <Column dataField="Customer" dataType="string" width={150} />
 
         <Pager allowedPageSizes={pageSizes} showPageSizeSelector={true} />
-        <Paging defaultPageSize={10} />
+        <Paging defaultPageSize={10} /> */}
       </DataGrid>
     </>
   );
